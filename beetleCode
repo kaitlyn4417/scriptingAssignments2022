@@ -1,0 +1,57 @@
+//edit this number to change size of beetle :)
+float $rSize = 3;
+
+float $scale = 0.5;
+float $spacing = ($rSize/4);
+float $rCSize = ($spacing/4);
+
+
+//body
+polySphere -r $rSize -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1;
+move -r 0 $rSize 0;
+scale -r 1 $scale 1 ;
+
+//head
+polySphere -r ($rSize/1.7) -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1;
+move -r 0 $rSize ($rSize - $spacing);
+scale -r 1 $scale 1 ;
+rotate -r -os -fo 25 0 0 ;
+
+//left 'eye' spot
+polySphere -r ($rSize/5) -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1;
+move -r ($rSize - ($rSize/1.5)) $rSize $rSize;
+
+//right 'eye' spot
+polySphere -r ($rSize/5) -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1;
+move -r (-$rSize + ($rSize/1.5)) $rSize $rSize;
+
+//leg 1
+polyCylinder -r $rCSize -h 2 -sx 20 -sy 1 -sz 1 -ax 0 1 0 -rcp 0 -cuv 3 -ch 1;
+move -r ($rSize - $spacing) ($rSize - $spacing) ($rSize/1.5);
+rotate -r -os -fo -30 0 45;
+
+//leg 2
+polyCylinder -r $rCSize -h 2 -sx 20 -sy 1 -sz 1 -ax 0 1 0 -rcp 0 -cuv 3 -ch 1;
+move -r $rSize ($rSize - $spacing) 0;
+rotate -r -os -fo 0 0 45;
+
+//leg 3
+polyCylinder -r $rCSize -h 2 -sx 20 -sy 1 -sz 1 -ax 0 1 0 -rcp 0 -cuv 3 -ch 1;
+move -r ($rSize - $spacing) ($rSize - $spacing) (-$rSize/1.5);
+rotate -r -os -fo 30 0 45;
+
+//leg 4
+polyCylinder -r $rCSize -h 2 -sx 20 -sy 1 -sz 1 -ax 0 1 0 -rcp 0 -cuv 3 -ch 1;
+move -r (-$rSize + $spacing) ($rSize - $spacing) ($rSize/1.5);
+rotate -r -os -fo -30 0 -45;
+
+//leg 5
+polyCylinder -r $rCSize -h 2 -sx 20 -sy 1 -sz 1 -ax 0 1 0 -rcp 0 -cuv 3 -ch 1;
+move -r (-$rSize) ($rSize - $spacing) 0;
+rotate -r -os -fo 0 0 -45;
+
+//leg 6
+polyCylinder -r $rCSize -h 2 -sx 20 -sy 1 -sz 1 -ax 0 1 0 -rcp 0 -cuv 3 -ch 1;
+move -r (-$rSize + $spacing) ($rSize - $spacing) (-$rSize/1.5);
+rotate -r -os -fo 30 0 -45;
+
