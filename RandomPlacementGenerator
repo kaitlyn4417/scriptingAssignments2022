@@ -1,0 +1,86 @@
+
+
+global proc PlaceObjectsRandomly(int $duplicateNum, float $minX, float $maxX, float $minY, float $maxY, float $minZ, float $maxZ)
+{
+    for ($i = 0; $i < $duplicateNum; $i++)
+    {
+        duplicate -returnRootsOnly;
+        float $xPos = `rand $minX $maxX`;
+        float $yPos = `rand $minY $maxY`;
+        float $zPos = `rand $minZ $maxZ`;
+        move -worldSpace $xPos $yPos $zPos;
+    }
+}
+
+
+global proc RandPlacement_cmd()
+{
+    //writing notes to myself to keep track/make sure I understand the process properly
+
+    //basically transfers variables from RandomObjectPlacementUI()
+    string $duplicateNumField = `optionVar -q "duplicateNumField"`;
+
+    string $minXField = `optionVar -q "minXField"`;
+    string $maxXField = `optionVar -q "maxXField"`;
+
+    string $minYField = `optionVar -q "minYField"`;
+    string $maxYField = `optionVar -q "maxYField"`;
+
+    string $minZField = `optionVar -q "minZField"`;
+    string $maxZField = `optionVar -q "maxZField"`;
+
+    //retrieves the data in each of the variables (to use in PlaceObjectsRandomly())
+    string $duplicateNum = `intField -q -value $duplicateNumField`;
+
+    string $minX = `floatField -q -value $minXField`;
+    string $maxX = `floatField -q -value $maxXField`;
+
+    string $minY = `floatField -q -value $minYField`;
+    string $maxY = `floatField -q -value $maxYField`;
+
+    string $minZ = `floatField -q -value $minZField`;
+    string $maxZ = `floatField -q -value $maxZField`;
+
+
+    PlaceObjectsRandomly($duplicateNum, $minX, $maxX, $minY, $maxY, $minZ, $maxZ);
+}
+
+
+global proc RandomObjectPlacementUI()
+{
+    string $myWindow = "RandPlacementWindow";
+
+    if (`window -exists $myWindow`)
+        deleteUI $myWindow;
+
+    $myWindow = `window -title "Random Placement Generator" -widthHeight 350 250 -resizeToFitChildren 1 $myWindow`;
+    
+    string $mainColumn = `columnLayout -parent $myWindow -adjustableColumn 1`;
+    
+    optionVar -stringValue "duplicateNumText" `textField -text "Number of Duplicates:" -parent $mainColumn -editable 0`;
+    optionVar -stringValue "duplicateNumField" `intField -parent $mainColumn`;
+   
+    optionVar -stringValue "minXText" `textField -text "Minimum X Value:" -parent $mainColumn -editable 0`;
+    optionVar -stringValue "minXField" `floatField -parent $mainColumn`;
+    optionVar -stringValue "maxXText" `textField -text "Maximum X Value:" -parent $mainColumn -editable 0`;
+    optionVar -stringValue "maxXField" `floatField -parent $mainColumn`;
+    
+    optionVar -stringValue "minYText" `textField -text "Minimum Y Value:" -parent $mainColumn -editable 0`;
+    optionVar -stringValue "minYField" `floatField -parent $mainColumn`;
+    optionVar -stringValue "maxYText" `textField -text "Maximum Y Value:" -parent $mainColumn -editable 0`;
+    optionVar -stringValue "maxYField" `floatField -parent $mainColumn`;
+    
+    optionVar -stringValue "minZText" `textField -text "Minimum Z Value:" -parent $mainColumn -editable 0`;
+    optionVar -stringValue "minZField" `floatField -parent $mainColumn`;
+    optionVar -stringValue "maxZText" `textField -text "Maximum Z Value:" -parent $mainColumn -editable 0`;
+    optionVar -stringValue "maxZField" `floatField -parent $mainColumn`;
+    
+    optionVar -stringValue "Spacing" `textField -parent $mainColumn -editable 0`;
+    button -parent $mainColumn -label "Go!" -command "RandPlacement_cmd";
+    
+    
+    showWindow $myWindow;
+}
+
+RandomObjectPlacementUI();
+
