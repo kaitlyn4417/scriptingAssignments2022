@@ -1,0 +1,58 @@
+import maya.cmds as cmds
+
+#edit this number to change size of beetle :)
+rSize = 3
+
+scale = 0.5
+spacing = (rSize/4)
+rCSize = (spacing/4)
+
+
+#body
+cmds.polySphere (r = rSize, sx = 20, sy = 20, ax = [0, 1, 0], cuv = 2, ch = 1)
+cmds.move (0, rSize, 0)
+cmds.scale (1, scale, 1)
+
+#head
+cmds.polySphere (r = (rSize/1.7), sx = 20, sy = 20, ax = [0, 1, 0], cuv = 2, ch = 1)
+cmds.move (0, rSize, (rSize - spacing))
+cmds.scale (1, scale, 1)
+cmds.rotate (25, 0, 0)
+
+#left 'eye' spot
+cmds.polySphere (r = (rSize/5), sx = 20, sy = 20, ax = [0, 1, 0], cuv = 2, ch = 1)
+cmds.move ((rSize - (rSize/1.5)), rSize, rSize)
+
+#right 'eye' spot
+cmds.polySphere (r = (rSize/5), sx = 20, sy = 20, ax = [0, 1, 0], cuv = 2, ch = 1)
+cmds.move ((-rSize + (rSize/1.5)), rSize, rSize)
+
+#leg 1
+cmds.polyCylinder (r = rCSize, h = 2, sx = 20, sy = 1, sz = 1, ax = [0, 1, 0], rcp = 0, cuv = 3, ch = 1)
+cmds.move ((rSize - spacing), (rSize - spacing), (rSize/1.5))
+cmds.rotate (-30, 0, 45)
+
+#leg 2
+cmds.polyCylinder (r = rCSize, h = 2, sx = 20, sy = 1, sz = 1, ax = [0, 1, 0], rcp = 0, cuv = 3, ch = 1)
+cmds.move (rSize, (rSize - spacing), 0)
+cmds.rotate (0, 0, 45)
+
+#leg 3
+cmds.polyCylinder (r = rCSize, h = 2, sx = 20, sy = 1, sz = 1, ax = [0, 1, 0], rcp = 0, cuv = 3, ch = 1)
+cmds.move  ((rSize - spacing), (rSize - spacing), (-rSize/1.5))
+cmds.rotate (30, 0, 45)
+
+#leg 4
+cmds.polyCylinder (r = rCSize, h = 2, sx = 20, sy = 1, sz = 1, ax = [0, 1, 0], rcp = 0, cuv = 3, ch = 1)
+cmds.move ((-rSize + spacing), (rSize - spacing), (rSize/1.5))
+cmds.rotate (-30, 0, -45)
+
+#leg 5
+cmds.polyCylinder (r = rCSize, h = 2, sx = 20, sy = 1, sz = 1, ax = [0, 1, 0], rcp = 0, cuv = 3, ch = 1)
+cmds.move ((-rSize), (rSize - spacing), 0)
+cmds.rotate (0, 0, -45)
+
+#leg 6
+cmds.polyCylinder (r = rCSize, h = 2, sx = 20, sy = 1, sz = 1, ax = [0, 1, 0], rcp = 0, cuv = 3, ch = 1)
+cmds.move ((-rSize + spacing), (rSize - spacing), (-rSize/1.5))
+cmds.rotate (30, 0, -45)
