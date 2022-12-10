@@ -1,0 +1,11 @@
+import maya.cmds as cmds
+
+
+def ChangeNurbsCircleColor(color):
+
+    circleLs = cmds.ls(s=1)
+    cmds.setAttr(circleLs[1] + ".overrideEnabled", 1)
+    cmds.setAttr(circleLs[1] + ".overrideEnabled", color)
+
+
+ChangeNurbsCircleColor(1)
