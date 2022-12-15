@@ -1,0 +1,18 @@
+import maya.cmds as cmds
+
+
+def Renamer(name):
+
+    count = name.count("#")
+    pre = "Leg_"
+    suffix = "_Jnt"
+    num = 1
+
+    if count > 0:
+        replacePound = str(num).zfill(count)
+        newName = name.replace(name, (pre + replacePound + suffix))
+        print(newName)
+    else:
+        print("Please use input # and try again (proper argument might look like this: Leg_##_Jnt")
+
+Renamer("Leg_###_Jnt")
